@@ -1,18 +1,30 @@
-#container {
+* {
+  box-sizing: border-box;
+}
+
+body {
   display: flex;
-  min-height: 100vh;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+}
+
+#container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(50px, 100px));
+  grid-template-rows: repeat(8, minmax(50px, 100px));
+  max-height: 95vh;
+  margin: 20px 1rem;
 }
 
 #square {
-  height: 100px;
-  width: 100px;
+  max-height: 100px;
+  max-width: 100px;
   border: 1px solid black;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
-  margin: 0 20px;
 }
 
 #circle {
