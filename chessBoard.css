@@ -27,7 +27,7 @@ body {
 }
 
 span[id^="piece"] {
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 900;
 }
 
@@ -84,9 +84,12 @@ span[id^="piece"] {
   border: 1px solid red;
   border-radius: 50%;
   background-color: red;
-  z-index: 1000;
 }
 
-.destination-drag {
-  border: 1px dotted red;
+.white {
+  color: green;
+}
+
+.black {
+  color: blue;
 }
