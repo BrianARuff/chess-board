@@ -3,28 +3,79 @@
 }
 
 body {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 #container {
-  height: 100vh;
   display: grid;
-  grid-template-columns: repeat(8, minmax(50px, 100px));
-  grid-template-rows: repeat(8, minmax(50px, 100px));
-  max-height: 95vh;
-  margin: 20px 1rem;
+  grid-template-columns: repeat(8, 100px);
+  grid-template-rows: repeat(8, 100px);
 }
 
 #square {
-  max-height: 100px;
-  max-width: 100px;
+  width: 100px;
+  height: 100px;
   border: 1px solid black;
   display: grid;
   justify-content: center;
   align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+span[id^="piece"] {
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+#square:nth-child(-2n + 8),
+#square:nth-child(8) ~ :nth-child(-2n + 15),
+#square:nth-child(16) ~ :nth-child(-2n + 24),
+#square:nth-child(24) ~ :nth-child(-2n + 31),
+#square:nth-child(32) ~ :nth-child(-2n + 40),
+#square:nth-child(40) ~ :nth-child(-2n + 47),
+#square:nth-child(48) ~ :nth-child(-2n + 56),
+#square:nth-child(56) ~ :nth-child(-2n + 63) {
+  background: tan;
+}
+
+@media (max-width: 900px) {
+  #container {
+    grid-template-columns: repeat(8, 75px);
+    grid-template-rows: repeat(8, 75px);
+  }
+
+  #square {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 600px) {
+  #container {
+    grid-template-columns: repeat(8, 40px);
+    grid-template-rows: repeat(8, 40px);
+  }
+
+  #square {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 359px) {
+  #container {
+    grid-template-columns: repeat(8, 35px);
+    grid-template-rows: repeat(8, 35px);
+  }
+
+  #square {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 #circle {
