@@ -1,5 +1,3 @@
-console.log('chess');
-
 window.addEventListener("DOMContentLoaded", () => {
 
   let piece = undefined;
@@ -9,13 +7,8 @@ window.addEventListener("DOMContentLoaded", () => {
   squares.forEach((element, i) => {
 
     element.addEventListener("dragstart", e => {
-      console.log(e.target);
       piece = e.target;
     });
-
-    element.addEventListener("dragend", e => {
-      console.log("Drag end");
-    })
 
     element.addEventListener("dragover", e => {
       e.preventDefault();
@@ -24,16 +17,29 @@ window.addEventListener("DOMContentLoaded", () => {
     element.addEventListener("drop", e => {
       console.log("Drag drop");
       console.log(e);
-      // Take the opponets piece.
-      console.log(piece.classList[0], e.target.classList[0], e.target.children);
-       if (piece.classList[0] === "white" && e.target.classList[0] === "white" || piece.classList[0] === "white" && e.target.children[0].classList[0] === "white" || piece.classList[0] === "black" && e.target.classList[0] === "black" || piece.classList[0] === "black" && e.target.children[0].classList[0] === "black" ) {
-        console.log("you can't take your own piece!")
-        return
-      }
-      
-      if (piece.classList[0] === "white" && e.target.classList[0] === "black") {
-        console.log("match found")
-        return
+
+      // Handle move made in the sqaure but not the piece
+      if (e.target.id && e.target.id === "square") {
+        console.log("square found")
+        const childPiece = e.target.children[0];
+        if (!childPiece) {
+          return e.target.append(piece);
+        }
+        if (piece.classList[0] === "white" && childPiece.classList[0] === "white" || piece.classList[0] === "black" && childPiece.classList[0] === "black") {
+          return console.log("can't take your own piece!");
+        } else if ( piece.classList[0] === "white" && childPiece.classList[0] === "black" || piece.classList[0] === "black" && childPiece.classList[0] === "white") {
+          console.log("opposite pieces on same sqaure", "deletion should occur here", "the attacking piece should be left where the defending piece was");
+          const tempChildParent = childPiece.parentNode;
+          childPiece.remove();
+          tempChildParent.append(piece);
+
+        } else if (!childPiece) {
+          console.log("no children found in this sqaure");
+          return;
+        } else if (piece.classList[0] === "white" && e.target.classList[0] === "black" 
+          || piece.classList[0] === "black" && e.target.classList[0] === "white") {
+            console.log("here")
+        }
       }
 
       e.target.append(piece);
