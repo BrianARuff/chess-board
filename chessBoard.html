@@ -7,73 +7,75 @@
   <link rel="stylesheet" href="/chessBoard.css">
 </head>
 <body>
-  <main id="container">
-    <div id="square" draggable="false"><span piece='1' class="black" id="piece" draggable="true">R</span></div>
-    <div class="test" piece='2' id="square" draggable="false"><span class="black" id="piece" draggable="true">N</span></div>
-    <div id="square" draggable="false"><span  class="black" id="piece" draggable="true">B</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">Q</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">K</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">B</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">N</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">R</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false" draggable="false"></div>
-    <div id="square" draggable="false"></div>
-    <div id="square" draggable="false"><span piece="3" class="white" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span piece= "4" class="white" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">R</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">N</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">B</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">Q</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">K</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">B</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">N</span></div>
-    <div id="square" draggable="false"><span class="white" id="piece" draggable="true">R</span></div>
-    
+  <h2 id="whoseTurnIsIt">It's White's Move</h2>
+    <h3 id="blackCapturedPieces">Black's Captured Pieces: &nbsp;</h3>
+    <main id="container">
+    <div data-square="a8" id="square" draggable="false"><span class="black" id="piece" draggable="true">R</span></div>
+    <div data-square="b8" class="test" id="square" draggable="false"><span class="black" id="piece" draggable="true">N</span></div>
+    <div data-square="c8" id="square" draggable="false"><span  class="black" id="piece" draggable="true">B</span></div>
+    <div data-square="d8" id="square" draggable="false"><span class="black" id="piece" draggable="true">Q</span></div>
+    <div data-square="e8" id="square" draggable="false"><span class="black" id="piece" draggable="true">K</span></div>
+    <div data-square="f8" id="square" draggable="false"><span class="black" id="piece" draggable="true">B</span></div>
+    <div data-square="g8" id="square" draggable="false"><span class="black" id="piece" draggable="true">N</span></div>
+    <div data-square="h8" id="square" draggable="false"><span class="black" id="piece" draggable="true">R</span></div>
+    <div data-square="a7" id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
+    <div data-square="b7" id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
+    <div data-square="c7" id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
+    <div data-square="d7" id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
+    <div data-square="e7" id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
+    <div data-square="f7" id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
+    <div data-square="g7" id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
+    <div data-square="h7" id="square" draggable="false"><span class="black" id="piece" draggable="true">P</span></div>
+    <div data-square="a6" id="square" draggable="false"></div>
+    <div data-square="b6" id="square" draggable="false"></div>
+    <div data-square="c6" id="square" draggable="false"></div>
+    <div data-square="d6" id="square" draggable="false"></div>
+    <div data-square="e6" id="square" draggable="false"></div>
+    <div data-square="f6" id="square" draggable="false"></div>
+    <div data-square="g6" id="square" draggable="false"></div>
+    <div data-square="h6" id="square" draggable="false"></div>
+    <div data-square="a5" id="square" draggable="false"></div>
+    <div data-square="b5" id="square" draggable="false"></div>
+    <div data-square="c5" id="square" draggable="false"></div>
+    <div data-square="d5" id="square" draggable="false"></div>
+    <div data-square="e5" id="square" draggable="false"></div>
+    <div data-square="f5" id="square" draggable="false"></div>
+    <div data-square="g5" id="square" draggable="false"></div>
+    <div data-square="h5" id="square" draggable="false"></div>
+    <div data-square="a4" id="square" draggable="false"></div>
+    <div data-square="b4" id="square" draggable="false"></div>
+    <div data-square="c4" id="square" draggable="false"></div>
+    <div data-square="d4" id="square" draggable="false"></div>
+    <div data-square="e4" id="square" draggable="false"></div>
+    <div data-square="f4" id="square" draggable="false"></div>
+    <div data-square="g4" id="square" draggable="false"></div>
+    <div data-square="h4" id="square" draggable="false"></div>
+    <div data-square="a3" id="square" draggable="false"></div>
+    <div data-square="b3" id="square" draggable="false"></div>
+    <div data-square="c3" id="square" draggable="false"></div>
+    <div data-square="d3" id="square" draggable="false"></div>
+    <div data-square="e3" id="square" draggable="false"></div>
+    <div data-square="f3" id="square" draggable="false"></div>
+    <div data-square="g3" id="square" draggable="false" draggable="false"></div>
+    <div data-square="h3" id="square" draggable="false"></div>
+    <div data-square="a2" id="square" draggable="false"><span piece="3" class="white" id="piece" draggable="true">P</span></div>
+    <div data-square="b2" id="square" draggable="false"><span piece= "4" class="white" id="piece" draggable="true">P</span></div>
+    <div data-square="c2" id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
+    <div data-square="d2" id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
+    <div data-square="e2" id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
+    <div data-square="f2" id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
+    <div data-square="g2" id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
+    <div data-square="h2" id="square" draggable="false"><span class="white" id="piece" draggable="true">P</span></div>
+    <div data-square="a1" id="square" draggable="false"><span class="white" id="piece" draggable="true">R</span></div>
+    <div data-square="b1" id="square" draggable="false"><span class="white" id="piece" draggable="true">N</span></div>
+    <div data-square="c1" id="square" draggable="false"><span class="white" id="piece" draggable="true">B</span></div>
+    <div data-square="d1" id="square" draggable="false"><span class="white" id="piece" draggable="true">Q</span></div>
+    <div data-square="e1" id="square" draggable="false"><span class="white" id="piece" draggable="true">K</span></div>
+    <div data-square="f1" id="square" draggable="false"><span class="white" id="piece" draggable="true">B</span></div>
+    <div data-square="g1" id="square" draggable="false"><span class="white" id="piece" draggable="true">N</span></div>
+    <div data-square="h1" id="square" draggable="false"><span class="white" id="piece" draggable="true">R</span></div>
   </main>
+  <h3 id="whiteCapturedPieces">White's Captured Pieces: &nbsp;</h3>
   <script src="/chessBoard.js"></script>
 </body>
 </html>

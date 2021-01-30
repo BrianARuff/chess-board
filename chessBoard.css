@@ -7,6 +7,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+#whoseTurnIsIt {
+  display: block;
 }
 
 #container {
@@ -27,8 +33,10 @@ body {
 }
 
 #piece {
-  font-size: 2rem;
+  font-size: 4rem;
   font-weight: 900;
+  z-index: 1000;
+  cursor: pointer;
 }
 
 #square:nth-child(-2n + 8),
