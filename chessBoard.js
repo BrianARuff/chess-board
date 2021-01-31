@@ -27,8 +27,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function swapTurn(element) {
     if (turn === true) {
+      document.querySelector("#whoseTurnIsIt").innerText = "It is Black's Move";
       return turn = false;
     } else {
+      document.querySelector("#whoseTurnIsIt").innerText = "It is White's Moves"
       return turn = true;
     }
   }
@@ -68,7 +70,6 @@ window.addEventListener("DOMContentLoaded", () => {
         if (e.target.id && e.target.id === "square" || e.currentTarget.children[0].classList[0] === "white") {
           const child = e.target.children[0];
             const source = findSquare(sourceSquare);
-            const tempPiece = findPiece(source.children[0].dataset.piece);
             if (source.children[0].className === "white" && e.target.className === "white") {
               console.log("Can't take own piece!");
               return turn = true;
@@ -84,21 +85,26 @@ window.addEventListener("DOMContentLoaded", () => {
 
               // White king movement logic including castle logic
               if (piece.dataset.piece === "K1") {
-                let kingSideCastle = true;
+                let whiteKingSideCastle = true;
                 for(let i = 0; i < moves.length; i++) {
                   
                   if ((moves[i].includes("e1,") || moves[i].includes(",e1") || moves[i].includes("h1,") || moves[i].includes("h1,")) && source.dataset.square === "e1" && destination.dataset.square === "g1") {
-                    kingSideCastle = false;
+                    whitewhiteKingSideCastle = false;
                     return console.log("Invalid castle attempt, white king or rook4 has already moved");
                   }
+                }
                 if ((f1.children.length === 1 || g1.children.length === 1) && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1") {
                   return console.log("Invalid Castle Attempt");
-                } else if (f1.children.length === 0 && g1.children.length === 0 && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1" && kingSideCastle) {
-                  console.log("Castle attempt!");
+                } else if (f1.children.length === 0 && g1.children.length === 0 && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1" && whiteKingSideCastle) {
+                  console.log("Castle");
+                  sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                   rook1.parentNode.removeChild(rook1);
                   f1.append(rook1);
+                  king1.parentNode.removeChild(king1);
+                  g1.append(king1);
                   swapTurn();
-                }
+                  console.log(moves);
+                  return;
                 }
               }
 
@@ -107,7 +113,9 @@ window.addEventListener("DOMContentLoaded", () => {
                   const tempParent = e.target.parentNode;
                   e.target.parentNode.children[0].remove();
                   tempParent.append(piece);
+                  sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                   swapTurn();
+                  return;
                 }
               }
 
@@ -116,9 +124,11 @@ window.addEventListener("DOMContentLoaded", () => {
               }
               // All other moves here...
               if (e.target.children.length === 0) {
+                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                 e.target.append(piece);
                 swapTurn();
-              } else if (e.target.childre.length === 1) {
+              } else if (e.target.children.length === 1) {
+                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                 e.target.children[0].remove();
                 e.target.append(piece);
                 swapTurn();
@@ -159,20 +169,33 @@ window.addEventListener("DOMContentLoaded", () => {
               const rook3 = findPiece("R3");
               const g8 = findSquare("g8");
               const f8 = findSquare("f8");
+              const king2 = findPiece('K2');
               const destination = e.target;
 
               // King movement logic including castle logic
               if (piece.dataset.piece === "K2") {
+                const blackKingSideCastle = true;
+                for(let i = 0; i < moves.length; i++) {
+                  
+                  if ((moves[i].includes("e8,") || moves[i].includes(",e8") || moves[i].includes("h8,") || moves[i].includes("h8,")) && source.dataset.square === "e8" && destination.dataset.square === "g8") {
+                    blackKingSideCastle = false;
+                    return console.log("Invalid castle attempt, white king or rook4 has already moved");
+                  }
+                }
                 if ((f8.children.length === 1 || g8.children.length === 1) && source.children[0].dataset.piece === "K2" && piece.dataset.piece === "K2" && destination.dataset.square === "g8") {
                   return console.log("Invalid Castle Attempt");
-                } else if (f8.children.length === 0 && g8.children.length === 0 && source.children[0].dataset.piece === "K2" && piece.dataset.piece === "K2" && destination.dataset.square === "g8") {
+                } else if (f8.children.length === 0 && g8.children.length === 0 && source.children[0].dataset.piece === "K2" && piece.dataset.piece === "K2" && destination.dataset.square === "g8" && blackKingSideCastle) {
                   console.log("Castle attempt!");
+                  sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                   rook3.parentNode.removeChild(rook3);
                   f8.append(rook3);
+                  king2.parentNode.removeChild(king2);
+                  g8.append(king2);
                   swapTurn(element);
                 }
               } else if (piece.dataset.piece.includes("B")) {
                 if (e.target.parentNode.children.length === 1) {
+                  sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                   const tempParent = e.target.parentNode;
                   e.target.parentNode.children[0].remove();
                   tempParent.append(piece);
@@ -185,13 +208,16 @@ window.addEventListener("DOMContentLoaded", () => {
               // All other moves here...
               if ((e.target.dataset.square && e.target.children.length === 0) || (e.target.dataset.piece && e.target.parentNode.children.length === 0)) {
                 e.target.append(piece);
+                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                 swapTurn(element);
               } else if ((e.target.dataset.square && e.target.children.length === 0) || (e.target.dataset.piece && e.target.parentNode.children.length === 1)) {
                 if (e.target.dataset.square && e.target.children.length === 0) {
+                  sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                   e.target.children[0].remove();
                   e.target.append(piece);
                   swapTurn();
                 } else if (e.target.dataset.piece && e.target.parentNode.children.length === 1) {
+                  sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                   const tempParent = e.target.parentNode;
                   e.target.parentNode.children[0].remove();
                   tempParent.append(piece);
