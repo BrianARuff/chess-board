@@ -16,13 +16,13 @@ body {
 
 #container {
   display: grid;
-  grid-template-columns: repeat(8, 100px);
-  grid-template-rows: repeat(8, 100px);
+  grid-template-columns: repeat(8, 75px);
+  grid-template-rows: repeat(8, 75px);
 }
 
 #square {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   border: 1px solid black;
   display: grid;
   justify-content: center;
@@ -34,6 +34,7 @@ body {
 #piece {
   z-index: 1000;
   cursor: pointer;
+  padding: 15px;
 }
 
 #square:nth-child(-2n + 8),

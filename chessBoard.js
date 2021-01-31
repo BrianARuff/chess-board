@@ -50,7 +50,19 @@ window.addEventListener("DOMContentLoaded", () => {
               console.log("Can't take own piece!");
               return turn = true;
             } else if (source.children[0].className === "white" && e.target.children.length === 0) {
-              console.log(tempPiece)
+              const source = findPiece(sourceSquare);
+              const bishop1 = findPiece("B1");
+              const bishop2 = findPiece("B2");
+              const destination = e.target;
+              if ((piece.dataset.piece === "B1") && destination.dataset.color === "light") {
+                console.log("Bishop Move");
+                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
+                e.target.append(tempPiece);
+              } else if (piece.dataset.piece === "B1" && !destination.dataset.color) {
+                console.log(`Bishop must stay on the ${bishop1.parentNode.dataset.color} squares.`);
+                return;
+              }
+              sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
               e.target.append(tempPiece);
             }
           } else if (piece.classList[0] === "white" && child.classList[0] === "black") {
