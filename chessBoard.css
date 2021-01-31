@@ -16,13 +16,13 @@ body {
 
 #container {
   display: grid;
-  grid-template-columns: repeat(8, 75px);
-  grid-template-rows: repeat(8, 75px);
+  grid-template-columns: repeat(8, 70px);
+  grid-template-rows: repeat(8, 70px);
 }
 
 #square {
-  width: 75px;
-  height: 75px;
+  width: 70px;
+  height: 70px;
   border: 1px solid black;
   display: grid;
   justify-content: center;
