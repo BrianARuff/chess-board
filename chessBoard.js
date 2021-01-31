@@ -33,6 +33,22 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function isPiece(element) {
+    if (element.dataset.piece) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function isSquare(element) {
+    if (element.dataset.square) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   squares.forEach((element) => {
 
     element.addEventListener("dragstart", e => {
@@ -109,7 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
               }
               
             } else if (piece.classList[0] === "white" && child.classList[0] === "black") {
-            console.log("opposite pieces on same sqaure", "deletion should occur here", "the attacking piece should be left where the defending piece was");
+            console.log("opposite pieces on same square", "deletion should occur here", "the attacking piece should be left where the defending piece was");
             const tempParent = child.parentNode;
             whiteCapturedPieces.innerText += (child.innerText + ", ");
             sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
@@ -165,14 +181,13 @@ window.addEventListener("DOMContentLoaded", () => {
               }
 
               if (piece.dataset.piece.includes("P")) {
-
               }
               // All other moves here...
-              if ((e.target.dataset.sqaure && e.target.children.length === 0) || (e.target.dataset.piece && e.target.parentNode.children.length === 0)) {
+              if ((e.target.dataset.square && e.target.children.length === 0) || (e.target.dataset.piece && e.target.parentNode.children.length === 0)) {
                 e.target.append(piece);
                 swapTurn(element);
-              } else if ((e.target.dataset.sqaure && e.target.children.length === 0) || (e.target.dataset.piece && e.target.parentNode.children.length === 1)) {
-                if (e.target.dataset.sqaure && e.target.children.length === 0) {
+              } else if ((e.target.dataset.square && e.target.children.length === 0) || (e.target.dataset.piece && e.target.parentNode.children.length === 1)) {
+                if (e.target.dataset.square && e.target.children.length === 0) {
                   e.target.children[0].remove();
                   e.target.append(piece);
                   swapTurn();
@@ -185,7 +200,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 
               }
           } else if (piece.classList[0] === "black" && child.classList[0] === "white") {
-            console.log("opposite pieces on same sqaure", "deletion should occur here", "the attacking piece should be left where the defending piece was");
+            console.log("opposite pieces on same square", "deletion should occur here", "the attacking piece should be left where the defending piece was");
             const tempParent = child.parentNode;
             blackCapturedPiieces.innerText += (child.innerText + ", ");
             sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
