@@ -79,14 +79,22 @@ window.addEventListener("DOMContentLoaded", () => {
 
               // White king movement logic including castle logic
               if (piece.dataset.piece === "K1") {
+                let kingSideCastle = true;
+                for(let i = 0; i < moves.length; i++) {
+                  
+                  if ((moves[i].includes("e1,") || moves[i].includes(",e1") || moves[i].includes("h1,") || moves[i].includes("h1,")) && source.dataset.square === "e1" && destination.dataset.square === "g1") {
+                    kingSideCastle = false;
+                    return console.log("Invalid castle attempt, white king or rook4 has already moved");
+                  }
                 if ((f1.children.length === 1 || g1.children.length === 1) && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1") {
                   return console.log("Invalid Castle Attempt");
-                } else if (f1.children.length === 0 && g1.children.length === 0 && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1") {
+                } else if (f1.children.length === 0 && g1.children.length === 0 && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1" && kingSideCastle) {
                   console.log("Castle attempt!");
                   rook1.parentNode.removeChild(rook1);
                   f1.append(rook1);
                   blacksTurn(element);
                 }
+              }
               }
               // Light squared white bishop stay on it's own color logic
               if ((piece.dataset.piece === "B1") && destination.dataset.color === "light") {
@@ -169,25 +177,30 @@ window.addEventListener("DOMContentLoaded", () => {
               }
 
               // Light squared black bishop stay on it's own color logic
-              if ((piece.dataset.piece === "B4") && destination.dataset.color === "light") {
+              if ((piece.dataset.piece === "B4") && destination.parentNode.dataset.color === "light") {
                 console.log("Bishop Move");
                 sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
-                e.target.append(tempPiece);
+                destination.parentNode.append(bishop4);
+                destination.remove(piece)
                 whitesTurn(element);
               } else if (piece.dataset.piece === "B4" && !destination.dataset.color) {
                 return console.log(`Bishop must stay on the ${bishop4.parentNode.dataset.color} squares.`);
               }
-              // dark sqaured black bishop stay on it's own color logic
+              // Dark sqaured black bishop stay on it's own color logic
               if ((piece.dataset.piece === "B3") && !destination.dataset.color) {
                 console.log("Bishop Move");
                 sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
-                e.target.append(tempPiece);
+                destination.parentNode.append(bishop3);
+                destination.remove(piece)
                 whitesTurn(element)
               } else if (piece.dataset.piece === "B3" && destination.dataset.color === "light") {
                 return console.log(`Bishop must stay on the dark squares.`);
-              } else if (!piece.dataset.piece.includes("B")) {
-                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
-                e.target.append(tempPiece);
+              } else {
+                // all other moves here...
+                if (!piece.dataset.piece.includes("B")) {
+                  sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
+                  e.target.append(piece);
+              }
               }
             }
           } else if (piece.classList[0] === "black" && child.classList[0] === "white") {
