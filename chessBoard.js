@@ -25,6 +25,24 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function blacksTurn(element) {
+    if (element.dataset.square === sourceSquare) {
+      return turn = true;
+    } else {
+      whoseTurnIsIt.innerText = "It's Black's Move"
+      return turn = false;
+    }
+  }
+
+  function whitesTurn(element) {
+    if (element.dataset.square === sourceSquare) {
+      return turn = false;
+    } else {
+      whoseTurnIsIt.innerText = "It's Black's Move"
+      return turn = true;
+    }
+  }
+
   squares.forEach((element) => {
 
     element.addEventListener("dragstart", e => {
@@ -54,16 +72,26 @@ window.addEventListener("DOMContentLoaded", () => {
               const bishop1 = findPiece("B1");
               const bishop2 = findPiece("B2");
               const destination = e.target;
+              // Light squared white bishop stay on it's own color logic
               if ((piece.dataset.piece === "B1") && destination.dataset.color === "light") {
                 console.log("Bishop Move");
                 sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                 e.target.append(tempPiece);
+                blacksTurn(element);
               } else if (piece.dataset.piece === "B1" && !destination.dataset.color) {
-                console.log(`Bishop must stay on the ${bishop1.parentNode.dataset.color} squares.`);
-                return;
+                return console.log(`Bishop must stay on the ${bishop1.parentNode.dataset.color} squares.`);
               }
-              sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
-              e.target.append(tempPiece);
+              // dark sqaured white bishop stay on it's own color logic
+              if ((piece.dataset.piece === "B2") && !destination.dataset.color) {
+                console.log("Bishop Move");
+                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
+                e.target.append(tempPiece);
+              } else if (piece.dataset.piece === "B2" && destination.dataset.color === "light") {
+                console.log(`Bishop must stay on the dark squares.`);
+              } else if (!piece.dataset.piece.includes("B")) {
+                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
+                e.target.append(tempPiece);
+              }
             }
           } else if (piece.classList[0] === "white" && child.classList[0] === "black") {
             console.log("opposite pieces on same sqaure", "deletion should occur here", "the attacking piece should be left where the defending piece was");
@@ -95,7 +123,6 @@ window.addEventListener("DOMContentLoaded", () => {
       // *** Black Piece Logic Here ***
       else if (turn === false && piece.classList[0] === "black") {
         if (e.target.id && e.target.id === "square" || e.currentTarget.children[0].classList[0] === "black") {
-          console.log("square found")
           const child = e.target.children[0];
           if (!child) {
             const source = findSquare(sourceSquare);
@@ -104,8 +131,31 @@ window.addEventListener("DOMContentLoaded", () => {
               console.log("Can't take own piece!");
               return turn = false;
             } else if (source.children[0].className === "black" && e.target.children.length === 0) {
-              console.log(tempPiece)
-              e.target.append(tempPiece);
+              const source = findPiece(sourceSquare);
+              const bishop3 = findPiece("B3");
+              const bishop4 = findPiece("B4");
+              const destination = e.target;
+              // Light squared black bishop stay on it's own color logic
+              if ((piece.dataset.piece === "B4") && destination.dataset.color === "light") {
+                console.log("Bishop Move");
+                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
+                e.target.append(tempPiece);
+                whitesTurn(element);
+              } else if (piece.dataset.piece === "B4" && !destination.dataset.color) {
+                return console.log(`Bishop must stay on the ${bishop4.parentNode.dataset.color} squares.`);
+              }
+              // dark sqaured black bishop stay on it's own color logic
+              if ((piece.dataset.piece === "B3") && !destination.dataset.color) {
+                console.log("Bishop Move");
+                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
+                e.target.append(tempPiece);
+                whitesTurn(element)
+              } else if (piece.dataset.piece === "B3" && destination.dataset.color === "light") {
+                return console.log(`Bishop must stay on the dark squares.`);
+              } else if (!piece.dataset.piece.includes("B")) {
+                sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
+                e.target.append(tempPiece);
+              }
             }
           } else if (piece.classList[0] === "black" && child.classList[0] === "white") {
             console.log("opposite pieces on same sqaure", "deletion should occur here", "the attacking piece should be left where the defending piece was");
