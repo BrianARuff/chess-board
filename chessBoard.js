@@ -68,10 +68,26 @@ window.addEventListener("DOMContentLoaded", () => {
               console.log("Can't take own piece!");
               return turn = true;
             } else if (source.children[0].className === "white" && e.target.children.length === 0) {
-              const source = findPiece(sourceSquare);
+              const source = findSquare(sourceSquare);
               const bishop1 = findPiece("B1");
               const bishop2 = findPiece("B2");
+              const king1 = findPiece("K1");
+              const rook1 = findPiece("R1");
               const destination = e.target;
+              const f1 = findSquare("f1")
+              const g1 = findSquare("g1");
+
+              // White king movement logic including castle logic
+              if (piece.dataset.piece === "K1") {
+                if ((f1.children.length === 1 || g1.children.length === 1) && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1") {
+                  return console.log("Invalid Castle Attempt");
+                } else if (f1.children.length === 0 && g1.children.length === 0 && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1") {
+                  console.log("Castle attempt!");
+                  rook1.parentNode.removeChild(rook1);
+                  f1.append(rook1);
+                  blacksTurn(element);
+                }
+              }
               // Light squared white bishop stay on it's own color logic
               if ((piece.dataset.piece === "B1") && destination.dataset.color === "light") {
                 console.log("Bishop Move");
@@ -81,7 +97,7 @@ window.addEventListener("DOMContentLoaded", () => {
               } else if (piece.dataset.piece === "B1" && !destination.dataset.color) {
                 return console.log(`Bishop must stay on the ${bishop1.parentNode.dataset.color} squares.`);
               }
-              // dark sqaured white bishop stay on it's own color logic
+              // Dark sqaured white bishop stay on it's own color logic
               if ((piece.dataset.piece === "B2") && !destination.dataset.color) {
                 console.log("Bishop Move");
                 sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
@@ -122,7 +138,7 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       // *** Black Piece Logic Here ***
       else if (turn === false && piece.classList[0] === "black") {
-        if (e.target.id && e.target.id === "square" || e.currentTarget.children[0].classList[0] === "black") {
+        if (e.target.id && e.target.id === "square" || e.currentTarget.children[0].classList[0] === "black" || e.target.id === "piece") {
           const child = e.target.children[0];
           if (!child) {
             const source = findSquare(sourceSquare);
@@ -131,10 +147,27 @@ window.addEventListener("DOMContentLoaded", () => {
               console.log("Can't take own piece!");
               return turn = false;
             } else if (source.children[0].className === "black" && e.target.children.length === 0) {
-              const source = findPiece(sourceSquare);
+              const source = findSquare(sourceSquare);
               const bishop3 = findPiece("B3");
               const bishop4 = findPiece("B4");
+              const king2 = findPiece("K2");
+              const rook3 = findPiece("R3");
+              const g8 = findSquare("g8");
+              const f8 = findSquare("f8");
               const destination = e.target;
+
+              // Black king movement logic including castle logic
+              if (piece.dataset.piece === "K2") {
+                if ((f8.children.length === 1 || g8.children.length === 1) && source.children[0].dataset.piece === "K2" && piece.dataset.piece === "K2" && destination.dataset.square === "g8") {
+                  return console.log("Invalid Castle Attempt");
+                } else if (f8.children.length === 0 && g8.children.length === 0 && source.children[0].dataset.piece === "K2" && piece.dataset.piece === "K2" && destination.dataset.square === "g8") {
+                  console.log("Castle attempt!");
+                  rook3.parentNode.removeChild(rook3);
+                  f8.append(rook3);
+                  whitesTurn(element);
+                }
+              }
+
               // Light squared black bishop stay on it's own color logic
               if ((piece.dataset.piece === "B4") && destination.dataset.color === "light") {
                 console.log("Bishop Move");
