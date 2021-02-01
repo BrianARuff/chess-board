@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 900px;
+  flex-direction: column-reverse;
 }
 
 #whoseTurnIsIt {
