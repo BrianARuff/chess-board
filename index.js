@@ -4,9 +4,8 @@ window.addEventListener("DOMContentLoaded", () => {
   let sourceSquare = undefined;
   const squares = document.querySelectorAll("#square");
   const pieces = document.querySelectorAll("#piece");
-  const whoseTurnIsIt = document.querySelector("#whoseTurnIsIt");
   const whiteCapturedPieces = document.querySelector("#whiteCapturedPieces");
-  const blackCapturedPiieces = document.querySelector("#blackCapturedPieces");
+  const blackCapturedPieces = document.querySelector("#blackCapturedPieces");
   const moves = [];
 
   function findPiece(pieceName) {
@@ -27,10 +26,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function swapTurn(element) {
     if (turn === true) {
-      document.querySelector("#whoseTurnIsIt").innerText = "Black's Move";
+      document.querySelector("#whoseTurnIsIt").innerText = "Black's Turn";
       return turn = false;
     } else {
-      document.querySelector("#whoseTurnIsIt").innerText = "Black's Move";
+      document.querySelector("#whoseTurnIsIt").innerText = "White's Turn";
       return turn = true;
     }
   }
