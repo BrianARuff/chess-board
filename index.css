@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  max-width: 900px;
 }
 
 #whoseTurnIsIt {
@@ -46,6 +46,14 @@ body {
 #square:nth-child(48) ~ :nth-child(-2n + 56),
 #square:nth-child(56) ~ :nth-child(-2n + 63) {
   background: tan;
+}
+
+.whiteCapturedPiecesContainer, .blackCapturedPiecesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
 }
 
 @media (max-width: 900px) {
