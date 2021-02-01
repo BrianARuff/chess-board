@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <div id="blackCapturedPieces" class="blackCapturedPiecesContainer"></div>
     <main id="container">
     <div data-color="light" data-square="a8" id="square" ><img src="45px-Chess_rdt45.svg.png" alt="black rook" class="black" data-piece="R4" id="piece" draggable="true"></img></div>
     <div data-square="b8" id="square" ><img src="45px-Chess_ndt45.svg.png" alt="black knight" class="black" data-piece="N4" id="piece" draggable="true"></img></div>
@@ -74,7 +75,7 @@
     <div data-color="light" data-square="h1" id="square" ><img src="45px-Chess_rlt45.svg.png" alt="white rook" data-piece="R1" class="white" id="piece" draggable="true"></img></div>
   </main>
   <div id="whiteCapturedPieces" class="whiteCapturedPiecesContainer"></div>
-  <div id="blackCapturedPieces" class="blackCapturedPiecesContainer"></div>
+  <h2 id="whoseTurnIsIt">White's Turn</h2>
   <script src="DragDropTouch.js"></script>
   <script src="index.js"></script>
 </body>

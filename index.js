@@ -27,8 +27,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function swapTurn(element) {
     if (turn === true) {
+      document.querySelector("#whoseTurnIsIt").innerText = "Black's Move";
       return turn = false;
     } else {
+      document.querySelector("#whoseTurnIsIt").innerText = "Black's Move";
       return turn = true;
     }
   }
