@@ -8,10 +8,15 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column-reverse;
+  flex-wrap: wrap;
 }
 
-#whoseTurnIsIt {
-  display: block;
+.mainContainer {
+  max-width: 560px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
 }
 
 #container {
@@ -38,17 +43,18 @@ body {
 }
 
 #square:nth-child(-2n + 8),
-#square:nth-child(8) ~ :nth-child(-2n + 15),
-#square:nth-child(16) ~ :nth-child(-2n + 24),
-#square:nth-child(24) ~ :nth-child(-2n + 31),
-#square:nth-child(32) ~ :nth-child(-2n + 40),
-#square:nth-child(40) ~ :nth-child(-2n + 47),
-#square:nth-child(48) ~ :nth-child(-2n + 56),
-#square:nth-child(56) ~ :nth-child(-2n + 63) {
+#square:nth-child(8)~ :nth-child(-2n + 15),
+#square:nth-child(16)~ :nth-child(-2n + 24),
+#square:nth-child(24)~ :nth-child(-2n + 31),
+#square:nth-child(32)~ :nth-child(-2n + 40),
+#square:nth-child(40)~ :nth-child(-2n + 47),
+#square:nth-child(48)~ :nth-child(-2n + 56),
+#square:nth-child(56)~ :nth-child(-2n + 63) {
   background: tan;
 }
 
-.whiteCapturedPiecesContainer, .blackCapturedPiecesContainer {
+.whiteCapturedPiecesContainer,
+.blackCapturedPiecesContainer {
   display: flex;
   justify-content: center;
   align-items: center;

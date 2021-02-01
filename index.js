@@ -134,12 +134,11 @@ window.addEventListener("DOMContentLoaded", () => {
                 swapTurn();
                 console.log(moves);
                 return;
-              } else if (e.target.dataset.square === "c1" && (d1.children.length === 1 || c1.children.length === 1) && !whiteQueenSideCastle) {
+              } else if (sourceSquare === "e1" && e.target.dataset.square === "c1" && (d1.children.length === 1 || c1.children.length === 1 || b1.children.length === 1) || !whiteQueenSideCastle) {
                 console.log("illegal castle attempt");
+                return;
               } else if (whiteQueenSideCastle && d1.children.length === 0 && c1.children.length === 0 && b1.children.length === 0) {
                 // Long side castle
-                console.log("Should be able to castle");
-                c1.appendChild(king1);
                 d1.appendChild(rook2);
                 swapTurn();
                 return;
@@ -254,9 +253,11 @@ window.addEventListener("DOMContentLoaded", () => {
                 king2.parentNode.removeChild(king2);
                 g8.append(king2);
                 swapTurn(element);
-              } else if (blackQueenSideCastle && d8.children.length === 0 && c8.children.length === 0 && c8.children.length === 0) {
+              } else if (blackQueenSideCastle && d8.children.length === 0 && c8.children.length === 0 && b8.children.length === 0) {
                 console.log("black king can castle queen side");
                 d8.appendChild(rook4);
+              } else if (!blackQueenSideCastle || (d8.children.length === 1 || c8.children.length === 1 || b8.children.length === 1) && sourceSquare === "e8" && e.target.dataset.square === "c8") {
+                return console.log("invalid castling attempt");
               }
             }
 
