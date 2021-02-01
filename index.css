@@ -55,39 +55,3 @@ body {
   flex-wrap: wrap;
   margin: 20px;
 }
-
-@media (max-width: 900px) {
-  #container {
-    grid-template-columns: repeat(8, 75px);
-    grid-template-rows: repeat(8, 75px);
-  }
-
-  #square {
-    width: 75px;
-    height: 75px;
-  }
-}
-
-@media (max-width: 600px) {
-  #container {
-    grid-template-columns: repeat(8, 40px);
-    grid-template-rows: repeat(8, 40px);
-  }
-
-  #square {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-@media (max-width: 359px) {
-  #container {
-    grid-template-columns: repeat(8, 35px);
-    grid-template-rows: repeat(8, 35px);
-  }
-
-  #square {
-    width: 35px;
-    height: 35px;
-  }
-}
