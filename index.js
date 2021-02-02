@@ -134,9 +134,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
               // invalid castle attempt
-              if ((f1.children.length === 1 || g1.children.length === 1) && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1") {
+              if (sourceSquare === "e1" && (f1.children.length === 1 || g1.children.length === 1) && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1") {
                 return console.log("Invalid Castle Attempt");
-              } else if (f1.children.length === 0 && g1.children.length === 0 && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1" && whiteKingSideCastle) {
+              } else if (sourceSquare === "e1" && f1.children.length === 0 && g1.children.length === 0 && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1" && whiteKingSideCastle) {
                 // Short side castle
                 console.log("Castle");
                 sourceSquare && e.target.parentNode.dataset.square ? moves.push(sourceSquare + "," + e.target.parentNode.dataset.square) : console.log("Move not added");
@@ -150,7 +150,7 @@ window.addEventListener("DOMContentLoaded", () => {
               } else if (sourceSquare === "e1" && e.target.dataset.square === "c1" && (d1.children.length === 1 || c1.children.length === 1 || b1.children.length === 1) || !whiteQueenSideCastle) {
                 console.log("illegal castle attempt");
                 return;
-              } else if (whiteQueenSideCastle && d1.children.length === 0 && c1.children.length === 0 && b1.children.length === 0) {
+              } else if (sourceSquare === "e1" && whiteQueenSideCastle && d1.children.length === 0 && c1.children.length === 0 && b1.children.length === 0) {
                 // Long side castle
                 d1.appendChild(rook2);
                 c1.appendChild(king1);
@@ -243,9 +243,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 }
 
               // castling logic
-              if ((f8.children.length === 1 || g8.children.length === 1) && destination.dataset.square === "g8") {
+              if ((sourceSquare === "e8" && f8.children.length === 1 || g8.children.length === 1) && destination.dataset.square === "g8") {
                 return console.log("Invalid Castle Attempt");
-              } else if (f8.children.length === 0 && g8.children.length === 0 && source.children[0].dataset.piece === "K2" && piece.dataset.piece === "K2" && destination.dataset.square === "g8" && blackKingSideCastle) {
+              } else if (sourceSquare === "e8" && f8.children.length === 0 && g8.children.length === 0 && source.children[0].dataset.piece === "K2" && piece.dataset.piece === "K2" && destination.dataset.square === "g8" && blackKingSideCastle) {
                 console.log("Castle attempt!");
                 sourceSquare && e.target.dataset.square ? moves.push(sourceSquare + "," + e.target.dataset.square) : console.log("Move not added");
                 rook3.parentNode.removeChild(rook3);
@@ -253,7 +253,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 king2.parentNode.removeChild(king2);
                 g8.append(king2);
                 swapTurn(element);
-              } else if (blackQueenSideCastle && d8.children.length === 0 && c8.children.length === 0 && b8.children.length === 0) {
+              } else if (sourceSquare === "e8" && blackQueenSideCastle && d8.children.length === 0 && c8.children.length === 0 && b8.children.length === 0) {
                 console.log("black king can castle queen side");
                 d8.appendChild(rook4);
               } else if (!blackQueenSideCastle || (d8.children.length === 1 || c8.children.length === 1 || b8.children.length === 1) && sourceSquare === "e8" && e.target.dataset.square === "c8") {
