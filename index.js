@@ -276,7 +276,7 @@ window.addEventListener("DOMContentLoaded", () => {
             if (piece.dataset.piece.includes("P")) {}
 
             // All other moves here...
-            if (e.target.children.length === 0) {
+            if (e.currentTarget.children.length === 0) {
               e.currentTarget.append(piece);
               sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
               swapTurn(element);
