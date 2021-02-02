@@ -104,21 +104,19 @@ window.addEventListener("DOMContentLoaded", () => {
               let whiteQueenSideCastle = true;
 
               // check for invalid castling on king side
-              for (let i = 0; i < moves.length; i++) {
 
-                if ((moves[i].includes("e1,") || moves[i].includes(",e1") || moves[i].includes("h1,") || moves[i].includes("h1,")) && source.dataset.square === "e1" && destination.dataset.square === "g1") {
+                if ((moves.includes("e1,") || moves.includes(",e1") || moves.includes("h1,") || moves.includes("h1,")) && source.dataset.square === "e1" && destination.dataset.square === "g1") {
                   whitewhiteKingSideCastle = false;
                   return console.log("Invalid castle attempt, white king or rook4 has already moved");
                 }
-              }
 
               // check for invalid castling on queen side
-              for (let i = 0; i < moves.length; i++) {
-                if ((moves[i].includes("e1,") || moves[i].includes("e1,") || moves[i].includes("a1,") || moves[i].includes(",a1"))) {
+
+                if ((moves.includes("e1,") || moves.includes("e1,") || moves.includes("a1,") || moves.includes(",a1")) && king1.parentNode.dataset.square !== "e1") {
                   whiteQueenSideCastle = false;
                   return console.log("Invalid castle attempt, the white king or rook has already moved");
                 }
-              }
+
 
               // invalid castle attempt
               if ((f1.children.length === 1 || g1.children.length === 1) && source.children[0].dataset.piece === "K1" && piece.dataset.piece === "K1" && destination.dataset.square === "g1") {
@@ -222,25 +220,21 @@ window.addEventListener("DOMContentLoaded", () => {
 
             // King movement logic including castle logic
             if (piece.dataset.piece === "K2") {
-              const blackKingSideCastle = true;
-              const blackQueenSideCastle = true;
+              let blackKingSideCastle = true;
+              let blackQueenSideCastle = true;
 
               // check for invalid castling  on king side
-              for (let i = 0; i < moves.length; i++) {
 
-                if ((moves[i].includes("e8,") || moves[i].includes(",e8") || moves[i].includes("h8,") || moves[i].includes("h8,")) && source.dataset.square === "e8" && destination.dataset.square === "g8") {
+                if ((moves.includes("e8,") || moves.includes(",e8") || moves.includes("h8,") || moves.includes("h8,")) && source.dataset.square === "e8" && destination.dataset.square === "g8") {
                   blackKingSideCastle = false;
                   return console.log("Invalid castle attempt, white king or rook4 has already moved");
                 }
-              }
 
               // check for invalid castling on queen side
-              for (let i = 0; i < moves.length; i++) {
-                if ((moves[i].includes("e8,") || moves[i].includes("e8,") || moves[i].includes("a8,") || moves[i].includes(",a8"))) {
+                if ((moves.includes("e8,") || moves.includes("e8,") || moves.includes("a8,") || moves.includes(",a8"))) {
                   blackQueenSideCastle = false;
                   return console.log("Invalid castle attempt, the white king or rook has already moved");
                 }
-              }
 
               // castling logic
               if ((f8.children.length === 1 || g8.children.length === 1) && destination.dataset.square === "g8") {
