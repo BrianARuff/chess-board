@@ -116,11 +116,14 @@ window.addEventListener("DOMContentLoaded", () => {
       // White Piece Logic Here
       if (turn === true && piece.classList[0] === "white") {
         if (e.currentTarget.id && e.currentTarget.id === "square" || (e.currentTarget.id && e.currentTarget.id === "piece")) {
-          const child = e.currentTarget.children[0] || e.currentTarget;
+          const child = e.currentTarget.children[0];
           const source = findSquare(sourceSquare);
-          if (source.children[0].className === "white" && e.currentTarget.className === "white") {
-            console.log("Can't take own piece!");
-            return turn = true;
+          if (source.children[0].className === "white" && (e.currentTarget.children.length === 1 && e.currentTarget.children[0].className === "white")) {
+            if (e.currentTarget.children[0].className === "white") {
+              console.log("Can't take own piece!");
+              return turn = true;
+            }
+
           } else if (source.children[0].className === "white" && e.currentTarget.children.length === 0) {
             const source = findSquare(sourceSquare);
             const destination = e.currentTarget;
@@ -187,7 +190,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             }
 
-            // All other moves here...
+            // All other non capture moves here...
             if (e.currentTarget.children.length === 0) {
               sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
               whiteCapturedPieces.append();
@@ -197,7 +200,7 @@ window.addEventListener("DOMContentLoaded", () => {
             } else if (e.currentTarget.children.length === 1) {
               sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
               const capturedPieceImage = createPieceImage(piece.source);
-              console.log(capturedPieceImage);
+              whiteCapturedPieces.appendChild(capturedPieceImage);
               e.currentTarget.children[0].remove();
               e.currentTarget.append(piece);
               swapTurn();
@@ -205,7 +208,9 @@ window.addEventListener("DOMContentLoaded", () => {
             }
 
           } else if (piece.classList[0] === "white" && child.classList[0] === "black") {
-            const tempParent = child.parentNode;
+            const capturedPieceImage = createPieceImage(e.currentTarget.children[0]);
+            whiteCapturedPieces.appendChild(capturedPieceImage);
+            const tempParent = e.currentTarget;
             sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
             child.remove();
             tempParent.appendChild(piece);
@@ -215,7 +220,7 @@ window.addEventListener("DOMContentLoaded", () => {
         } else if (
           // All other captures by white
           piece.classList[0] === "white" && e.currentTarget.classList[0] === "black") {
-          const capturedPieceImage = createPieceImage(e.currentTarget);
+          const capturedPieceImage = createPieceImage(e.currentTarget.children[0]);
           whiteCapturedPieces.appendChild(capturedPieceImage);
           const tempParent = e.currentTarget.parentNode;
           sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
@@ -295,7 +300,7 @@ window.addEventListener("DOMContentLoaded", () => {
               swapTurn(element);
               return;
             } else if (e.currentTarget.children.length === 1) {
-              const capturedPieceImage = createPieceImage(e.currentTarget);
+              const capturedPieceImage = createPieceImage(e.currentTarget.children[0]);
               blackCapturedPieces.appendChild(capturedPieceImage);
               sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
               e.currentTarget.children[0].remove();
