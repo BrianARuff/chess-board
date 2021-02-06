@@ -186,13 +186,17 @@ window.addEventListener("DOMContentLoaded", () => {
               }
             }
 
-            if (piece.dataset.piece.includes("P")) {
-              if (piece.parentNode.dataset.square.includes("8")) {
+            if (piece.dataset.piece.includes("P") && e.currentTarget.dataset.square.includes("8")) {
                 const img = new Image();
                 img.srcset = "./45px-Chess_qlt45.svg.png"
-                e.currentTarget.removeChild(piece);
+                img.alt = "white queen";
+                img.dataset.piece = "Q";
+                img.classList.add("white");
+                piece.remove();
                 e.currentTarget.appendChild(img);
-              }
+                playSound();
+                swapTurn();
+                return;
             }
 
             // All other non capture moves here...
@@ -309,7 +313,18 @@ window.addEventListener("DOMContentLoaded", () => {
               }
             }
 
-            if (piece.dataset.piece.includes("P")) {}
+            if (piece.dataset.piece.includes("P") && e.currentTarget.dataset.square.includes("1")) {
+              const img = new Image();
+              img.srcset = "./45px-Chess_qdt45.svg.png"
+              img.alt = "black queen";
+              img.dataset.piece = "Q";
+              img.classList.add("black");
+              piece.remove();
+              e.currentTarget.appendChild(img);
+              playSound();
+              swapTurn();
+              return;
+          }
 
             // All other moves here...
             if (e.currentTarget.children.length === 0) {
