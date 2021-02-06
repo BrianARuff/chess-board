@@ -187,7 +187,12 @@ window.addEventListener("DOMContentLoaded", () => {
             }
 
             if (piece.dataset.piece.includes("P")) {
-
+              if (piece.parentNode.dataset.square.includes("8")) {
+                const img = new Image();
+                img.srcset = "./45px-Chess_qlt45.svg.png"
+                e.currentTarget.removeChild(piece);
+                e.currentTarget.appendChild(img);
+              }
             }
 
             // All other non capture moves here...
@@ -208,13 +213,26 @@ window.addEventListener("DOMContentLoaded", () => {
             }
 
           } else if (piece.classList[0] === "white" && child.classList[0] === "black") {
-            const capturedPieceImage = createPieceImage(e.currentTarget.children[0]);
-            whiteCapturedPieces.appendChild(capturedPieceImage);
-            const tempParent = e.currentTarget;
-            sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
-            child.remove();
-            tempParent.appendChild(piece);
-            swapTurn();
+            if (piece.dataset.piece.includes("P") && e.currentTarget.dataset.square.includes("8")) {
+              const img = new Image();
+              img.srcset = "./45px-Chess_qlt45.svg.png"
+              img.alt = "white queen";
+              img.dataset.piece = "Q";
+              img.classList.add("white");
+              whiteCapturedPieces.appendChild(e.currentTarget.children[0]);
+              piece.remove();
+              e.currentTarget.appendChild(img);
+              playSound();
+              swapTurn();
+            } else {
+              const capturedPieceImage = createPieceImage(e.currentTarget.children[0]);
+              whiteCapturedPieces.appendChild(capturedPieceImage);
+              const tempParent = e.currentTarget;
+              sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
+              child.remove();
+              tempParent.appendChild(piece);
+              swapTurn();
+            }
             return;
           }
         } else if (
@@ -309,13 +327,27 @@ window.addEventListener("DOMContentLoaded", () => {
               return;
             }
           } else if (piece.className === "black" && e.currentTarget.children[0].className === "white") {
-            const capturedPieceImage = createPieceImage(e.currentTarget.children[0]);
-            blackCapturedPieces.appendChild(capturedPieceImage);
-            const tempParent = e.currentTarget;
-            sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
-            e.currentTarget.children[0].remove();
-            tempParent.append(piece);
-            swapTurn(element);
+            if (piece.dataset.piece.includes("P") && e.currentTarget.dataset.square.includes("1")) {
+              const img = new Image();
+              img.srcset = "./45px-Chess_qdt45.svg.png"
+              img.alt = "black queen";
+              img.dataset.piece = "Q";
+              img.classList.add("black");
+              blackCapturedPieces.appendChild(e.currentTarget.children[0]);
+              piece.remove();
+              e.currentTarget.appendChild(img);
+              playSound();
+              swapTurn();
+            } else {
+              const capturedPieceImage = createPieceImage(e.currentTarget.children[0]);
+              blackCapturedPieces.appendChild(capturedPieceImage);
+              const tempParent = e.currentTarget;
+              sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
+              e.currentTarget.children[0].remove();
+              tempParent.append(piece);
+              swapTurn(element);
+            }
+            return;
           }
         }
       }
