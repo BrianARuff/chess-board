@@ -227,9 +227,9 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       // *** Black Piece Logic Here ***
       else if (turn === false && piece.classList[0] === "black") {
-        if (e.currentTarget.id && e.currentTarget.id === "square" || e.currentTarget.children[0].classList[0] === "black" || e.currentTarget.id === "piece") {
+        if (e.currentTarget.id && e.currentTarget.id === "square" || e.currentTarget.children[0].classList[0] === "black" || e.currentTarget.children[0].id === "piece") {
           const source = findSquare(sourceSquare);
-          if (e.currentTarget.parentNode.children.length === 1 && source.children[0].className === "black" && e.currentTarget.className === "black") {
+          if (e.currentTarget.children.length === 1 && source.children[0].className === "black" && e.currentTarget.children[0].className === "black") {
             console.log("Can't take own piece!");
             return turn = false;
           } else if (e.currentTarget.children.length === 0) {
@@ -303,12 +303,12 @@ window.addEventListener("DOMContentLoaded", () => {
               swapTurn();
               return;
             }
-          } else if (piece.className === "black" && e.currentTarget.className === "white") {
-            const capturedPieceImage = createPieceImage(e.currentTarget);
+          } else if (piece.className === "black" && e.currentTarget.children[0].className === "white") {
+            const capturedPieceImage = createPieceImage(e.currentTarget.children[0]);
             blackCapturedPieces.appendChild(capturedPieceImage);
-            const tempParent = e.currentTarget.parentNode;
+            const tempParent = e.currentTarget;
             sourceSquare && e.currentTarget.dataset.square ? moves.push(sourceSquare + "," + e.currentTarget.dataset.square) : console.log("Move not added");
-            e.currentTarget.remove();
+            e.currentTarget.children[0].remove();
             tempParent.append(piece);
             swapTurn(element);
           }
