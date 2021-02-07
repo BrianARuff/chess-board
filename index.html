@@ -113,6 +113,12 @@
   </div>
   <div id="blackCapturedPieces" class="blackCapturedPiecesContainer"></div>
   <h2 id="whoseTurnIsIt">White's Turn</h2>
+  <script>
+    // Registering our Service worker
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js', { scope: './' })
+    }
+  </script>
   <script src="DragDropTouch.js"></script>
   <script src="index.js"></script>
 </body>

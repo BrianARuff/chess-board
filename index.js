@@ -1,3 +1,6 @@
+if (window.location.protocol !== 'https:' && !window.location.hostname !== "localhost") {
+  window.location.replace(`https:${window.location.href.substring(window.location.protocol.length)}`);
+}
 window.addEventListener("DOMContentLoaded", () => {
   let turn = true;
   let piece = undefined;
