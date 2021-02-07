@@ -11,7 +11,8 @@ self.addEventListener('install', e => {
         './index.html',
         './manifest.json',
         './index.css',
-        './index.js'
+        './index.js',
+        './css-grid-polyfill-master/bin/css-polyfills.min.js'
       ]);
     })
   );
