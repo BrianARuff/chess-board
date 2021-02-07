@@ -1,6 +1,6 @@
 {
-  "name": "ChessBoard",
-  "short_name": "CB",
+  "name": "Brian Ruff Chess Board",
+  "short_name": "BRCB",
   "theme_color": "#ffffff",
   "display": "standalone",
   "Scope": "",

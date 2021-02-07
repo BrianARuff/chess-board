@@ -1,4 +1,4 @@
-const cacheName = 'ChessBoard';
+const cacheName = 'Brian Ruff Chess Board';
 
 // Cache all the files to make a PWA
 self.addEventListener('install', e => {
