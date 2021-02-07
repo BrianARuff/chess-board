@@ -7,6 +7,11 @@
   "start_url": "./index.html",
   "icons": [
     {
+      "src": "./512px-maskable-image.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
       "src": "./196px-maskable-image.png",
       "type": "image/png",
       "sizes": "196x196"
