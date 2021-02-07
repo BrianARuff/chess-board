@@ -7,6 +7,11 @@
   "start_url": "./index.html",
   "icons": [
     {
+      "src": "./196px-maskable-image.png",
+      "type": "image/png",
+      "sizes": "196x196"
+    },
+    {
       "src": "./144px-Chess-nld45.svg.png",
       "type": "image/png",
       "sizes": "144x144"
