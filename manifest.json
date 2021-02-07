@@ -7,6 +7,11 @@
   "start_url": "./index.html",
   "icons": [
     {
+      "src": "./144px-Chess-nld45.svg.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
       "src": "./45px-Chess_bdt45.svg.png",
       "type": "image/png",
       "sizes": "75x75"
