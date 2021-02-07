@@ -2,6 +2,7 @@
   "name": "Brian Ruff Chess Board",
   "short_name": "BRCB",
   "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "display": "standalone",
   "Scope": "",
   "start_url": "./index.html",
