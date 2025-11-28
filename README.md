@@ -1,1 +1,1 @@
-Netlify Link: https://priceless-lalande-4c2866.netlify.app/
+# [Play Chess](https://chess-board-nu.vercel.app/)
